@@ -1,5 +1,6 @@
 "use client";
-
+import { useInputMode } from "@/hooks/useInputMode";
+import { OnScreenKeyboard } from "@/components/OnScreenKeyboard";
 import React, { useEffect, useRef, useState } from "react";
 
 /*
@@ -364,39 +365,80 @@ export default function Home() {
   canvasRef.current?.focus?.();
   };
 
+
+  // new reusable input handler
+  const handleInput = (ch: string, label?: string) => {
+    const s = stateRef.current;
+    s.char = ch;
+    s.label = label ?? ch;
+    s.start = performance.now();
+    s.hueBase = Math.floor(Math.random() * 360);
+    s.rippleStart = performance.now();
+    s.particles = Array.from({ length: 80 }, () =>
+      new Particle(window.innerWidth / 2, window.innerHeight / 2, s.hueBase + Math.random() * 60 - 30, 1)
+    );
+
+    if (/[A-Z]/.test(ch) && (dictionary as Record<string, DictionaryItem[]>)[ch]) {
+      const bank = (dictionary as Record<string, DictionaryItem[]>)[ch];
+      const idx = indexRef.current[ch] % bank.length;
+      const item = bank[idx];
+      stateRef.current.currentItem = item;
+      stateRef.current.currentImage = preloaded.current[ch][idx];
+      stateRef.current.showImage = true;
+      indexRef.current[ch] = idx + 1;
+
+      if (lang === 'en') speakText(`${ch} is for ${item.word}`, 'en-US', 1.15);
+      else speakText(`${ch} মানে ${item.bn}`, 'bn-IN', 1.05);
+
+    } else {
+      stateRef.current.currentItem = null;
+      stateRef.current.currentImage = null;
+      stateRef.current.showImage = false;
+      speakText(label ?? ch, lang === 'en' ? 'en-US' : 'bn-IN', 1.05);
+    }
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // const onKey = (e: KeyboardEvent) => {
+    //   if (e.repeat) return;
+    //   e.preventDefault();
+    //   const label = labelForKey(e);
+    //   const ch = e.key.length === 1 ? e.key.toUpperCase() : label.toUpperCase();
+    //   const s = stateRef.current;
+    //   s.char = ch;
+    //   s.label = label;
+    //   s.start = performance.now();
+    //   s.hueBase = Math.floor(Math.random() * 360);
+    //   s.rippleStart = performance.now();
+    //   s.particles = Array.from({ length: 80 }, () => new Particle(window.innerWidth / 2, window.innerHeight / 2, s.hueBase + Math.random() * 60 - 30, 1));
+
+    //   if (/[A-Z]/.test(ch) && (dictionary as Record<string, DictionaryItem[]>)[ch]) {
+    //     const bank = (dictionary as Record<string, DictionaryItem[]>)[ch];
+    //     const idx = indexRef.current[ch] % bank.length;
+    //     const item = bank[idx];
+    //     stateRef.current.currentItem = item;
+    //     stateRef.current.currentImage = preloaded.current[ch][idx];
+    //     stateRef.current.showImage = true;
+    //     indexRef.current[ch] = idx + 1;
+    //     if (lang === 'en') speakText(`${ch} is for ${item.word}`, 'en-US', 1.15);
+    //     else speakText(`${ch} মানে ${item.bn}`, 'bn-IN', 1.05);
+    //   } else {
+    //     stateRef.current.currentItem = null;
+    //     stateRef.current.currentImage = null;
+    //     stateRef.current.showImage = false;
+    //     speakText(label, lang === 'en' ? 'en-US' : 'bn-IN', 1.05);
+    //   }
+    // };
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.repeat) return;
+    if (e.repeat) return;
       e.preventDefault();
       const label = labelForKey(e);
       const ch = e.key.length === 1 ? e.key.toUpperCase() : label.toUpperCase();
-      const s = stateRef.current;
-      s.char = ch;
-      s.label = label;
-      s.start = performance.now();
-      s.hueBase = Math.floor(Math.random() * 360);
-      s.rippleStart = performance.now();
-      s.particles = Array.from({ length: 80 }, () => new Particle(window.innerWidth / 2, window.innerHeight / 2, s.hueBase + Math.random() * 60 - 30, 1));
-
-      if (/[A-Z]/.test(ch) && (dictionary as Record<string, DictionaryItem[]>)[ch]) {
-        const bank = (dictionary as Record<string, DictionaryItem[]>)[ch];
-        const idx = indexRef.current[ch] % bank.length;
-        const item = bank[idx];
-        stateRef.current.currentItem = item;
-        stateRef.current.currentImage = preloaded.current[ch][idx];
-        stateRef.current.showImage = true;
-        indexRef.current[ch] = idx + 1;
-        if (lang === 'en') speakText(`${ch} is for ${item.word}`, 'en-US', 1.15);
-        else speakText(`${ch} মানে ${item.bn}`, 'bn-IN', 1.05);
-      } else {
-        stateRef.current.currentItem = null;
-        stateRef.current.currentImage = null;
-        stateRef.current.showImage = false;
-        speakText(label, lang === 'en' ? 'en-US' : 'bn-IN', 1.05);
-      }
+      handleInput(ch, label);
     };
 
     const onResize = () => resize();
@@ -503,38 +545,200 @@ export default function Home() {
 
   const pressLetter = (k: string) => { window.dispatchEvent(new KeyboardEvent('keydown', { key: k })); };
 
+  // return (
+  //   <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: 'black' }}>
+  //     {!started && (
+  //       <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  //         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+  //           <button onClick={begin} style={{ padding: '20px 40px', borderRadius: 24, color: 'white', fontSize: 20, fontWeight: 800, background: 'linear-gradient(135deg,#6EE7F9,#A78BFA,#F472B6)', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}>
+  //             Start • Fullscreen & Sound
+  //           </button>
+  //           <div style={{ color: 'rgba(255,255,255,0.85)' }}>Language: <strong>{lang === 'en' ? 'English' : 'Bengali'}</strong></div>
+  //           <div style={{ display: 'flex', gap: 8 }}>
+  //             <button onClick={() => setLang('en')} style={{ padding: '8px 12px', borderRadius: 8, background: '#10B981', color: 'white' }}>English</button>
+  //             <button onClick={() => setLang('bn')} style={{ padding: '8px 12px', borderRadius: 8, background: '#6366F1', color: 'white' }}>Bengali</button>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     )}
+
+  //     <canvas ref={canvasRef} style={{ width: '100%', height: '100%', outline: 'none' }} />
+
+  //     {started && (
+  //       <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center' }}>
+  //         <div style={{ display: 'flex', gap: 6 }}>
+  //           {Object.keys(dictionary).map(k => (
+  //             <button key={k} onClick={() => pressLetter(k)} style={{ padding: '8px 10px', borderRadius: 8, background: '#2563EB', color: 'white', fontWeight: 700 }}>{k}</button>
+  //           ))}
+  //         </div>
+  //         <div style={{ color: 'rgba(255,255,255,0.75)', marginLeft: 12 }}>Press any key… (ESC to exit fullscreen)</div>
+  //         <div style={{ marginLeft: 12 }}>
+  //           <button onClick={() => setLang(l => l === 'en' ? 'bn' : 'en')} style={{ padding: '6px 10px', borderRadius: 8, background: '#374151', color: 'white' }}>{lang === 'en' ? 'Bengali' : 'English'}</button>
+  //         </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+
+  // inside your component:
+  const { isMobile } = useInputMode();
+
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: 'black' }}>
-      {!started && (
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-            <button onClick={begin} style={{ padding: '20px 40px', borderRadius: 24, color: 'white', fontSize: 20, fontWeight: 800, background: 'linear-gradient(135deg,#6EE7F9,#A78BFA,#F472B6)', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}>
-              Start • Fullscreen & Sound
+  <div
+    style={{
+      width: "100vw",
+      height: "100vh",
+      overflow: "hidden",
+      background: "black",
+      position: "relative",
+    }}
+  >
+    {!started && (
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 12,
+          }}
+        >
+          <button
+            onClick={begin}
+            style={{
+              padding: "20px 40px",
+              borderRadius: 24,
+              color: "white",
+              fontSize: 20,
+              fontWeight: 800,
+              background:
+                "linear-gradient(135deg,#6EE7F9,#A78BFA,#F472B6)",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+            }}
+          >
+            Start • Fullscreen & Sound
+          </button>
+          <div style={{ color: "rgba(255,255,255,0.85)" }}>
+            Language:{" "}
+            <strong>{lang === "en" ? "English" : "Bengali"}</strong>
+          </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={() => setLang("en")}
+              style={{
+                padding: "8px 12px",
+                borderRadius: 8,
+                background: "#10B981",
+                color: "white",
+              }}
+            >
+              English
             </button>
-            <div style={{ color: 'rgba(255,255,255,0.85)' }}>Language: <strong>{lang === 'en' ? 'English' : 'Bengali'}</strong></div>
-            <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => setLang('en')} style={{ padding: '8px 12px', borderRadius: 8, background: '#10B981', color: 'white' }}>English</button>
-              <button onClick={() => setLang('bn')} style={{ padding: '8px 12px', borderRadius: 8, background: '#6366F1', color: 'white' }}>Bengali</button>
+            <button
+              onClick={() => setLang("bn")}
+              style={{
+                padding: "8px 12px",
+                borderRadius: 8,
+                background: "#6366F1",
+                color: "white",
+              }}
+            >
+              Bengali
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <canvas
+      ref={canvasRef}
+      style={{ width: "100%", height: "100%", outline: "none" }}
+    />
+
+    {started && (
+      <>
+        {/* Desktop button row */}
+        {!isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 16,
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              gap: 10,
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display: "flex", gap: 6 }}>
+              {Object.keys(dictionary).map((k) => (
+                <button
+                  key={k}
+                  onClick={() => pressLetter(k)}
+                  style={{
+                    padding: "8px 10px",
+                    borderRadius: 8,
+                    background: "#2563EB",
+                    color: "white",
+                    fontWeight: 700,
+                  }}
+                >
+                  {k}
+                </button>
+              ))}
+            </div>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.75)",
+                marginLeft: 12,
+              }}
+            >
+              Press any key… (ESC to exit fullscreen)
+            </div>
+            <div style={{ marginLeft: 12 }}>
+              <button
+                onClick={() =>
+                  setLang((l) => (l === "en" ? "bn" : "en"))
+                }
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: 8,
+                  background: "#374151",
+                  color: "white",
+                }}
+              >
+                {lang === "en" ? "Bengali" : "English"}
+              </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', outline: 'none' }} />
+        {/* ✅ Mobile on-screen keyboard */}
+        {isMobile && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              width: "100%",
+              background: "rgba(0,0,0,0.4)",
+              padding: "8px 0",
+              zIndex: 20,
+            }}
+          >
+            <OnScreenKeyboard onPress={(ch) => handleInput(ch)} />
+          </div>
+        )}
+      </>
+    )}
+  </div>
+);
 
-      {started && (
-        <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10, alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: 6 }}>
-            {Object.keys(dictionary).map(k => (
-              <button key={k} onClick={() => pressLetter(k)} style={{ padding: '8px 10px', borderRadius: 8, background: '#2563EB', color: 'white', fontWeight: 700 }}>{k}</button>
-            ))}
-          </div>
-          <div style={{ color: 'rgba(255,255,255,0.75)', marginLeft: 12 }}>Press any key… (ESC to exit fullscreen)</div>
-          <div style={{ marginLeft: 12 }}>
-            <button onClick={() => setLang(l => l === 'en' ? 'bn' : 'en')} style={{ padding: '6px 10px', borderRadius: 8, background: '#374151', color: 'white' }}>{lang === 'en' ? 'Bengali' : 'English'}</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
 }
