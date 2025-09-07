@@ -1,0 +1,522 @@
+{
+  "A": [
+    {
+      "word": "Apple",
+      "bn": "আপেল",
+      "img": "/img/apple.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Ant",
+      "bn": "পিঁপড়া",
+      "img": "/img/ant.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Ashok Chakra",
+      "bn": "অশোক চক্র",
+      "img": "/img/ashoka-chakra.png",
+      "category": "Symbol"
+    }
+  ],
+  "B": [
+    {
+      "word": "Banana",
+      "bn": "কলা",
+      "img": "/img/Banana.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Buffalo",
+      "bn": "মহিষ",
+      "img": "/img/Buffalo.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Bulbul",
+      "bn": "বুলবুল",
+      "img": "/img/Bulbul.png",
+      "category": "Bird"
+    }
+  ],
+  "C": [
+    {
+      "word": "Cat",
+      "bn": "বিড়াল",
+      "img": "/img/Cat.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Coconut",
+      "bn": "নারকেল",
+      "img": "/img/Coconut.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Cabbage",
+      "bn": "বন্দাকপি",
+      "img": "/img/Cabbage.png",
+      "category": "Vegetable"
+    }
+  ],
+  "D": [
+    {
+      "word": "Dog",
+      "bn": "কুকুর",
+      "img": "/img/Dog.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Duck",
+      "bn": "হাঁস",
+      "img": "/img/Duck.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Drum",
+      "bn": "ঢাক",
+      "img": "/img/Drum.png",
+      "category": "Instrument"
+    }
+  ],
+  "E": [
+    {
+      "word": "Elephant",
+      "bn": "হাতি",
+      "img": "/img/Elephant.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Egg",
+      "bn": "ডিম",
+      "img": "/img/egg.png",
+      "category": "Food"
+    },
+    {
+      "word": "Eagle",
+      "bn": "চিল",
+      "img": "/img/Eagle.png",
+      "category": "Bird"
+    }
+  ],
+  "F": [
+    {
+      "word": "Fish",
+      "bn": "মাছ",
+      "img": "/img/Fish.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Frog",
+      "bn": "ব্যাঙ",
+      "img": "/img/Frog.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Fig",
+      "bn": "ডুমুর",
+      "img": "/img/Fig.png",
+      "category": "Fruit"
+    }
+  ],
+  "G": [
+    {
+      "word": "Goat",
+      "bn": "ছাগল",
+      "img": "/img/Goat.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Guava",
+      "bn": "পেয়ারা",
+      "img": "/img/Guava.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Gourd",
+      "bn": "লাউ",
+      "img": "/img/Gourd.png",
+      "category": "Vegetable"
+    }
+  ],
+  "H": [
+    {
+      "word": "Horse",
+      "bn": "ঘোড়া",
+      "img": "/img/Horse.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Honey Bee",
+      "bn": "মৌমাছি",
+      "img": "/img/Honey_Bee.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Heron",
+      "bn": "বক",
+      "img": "/img/Heron.png",
+      "category": "Bird"
+    }
+  ],
+  "I": [
+    {
+      "word": "Ink",
+      "bn": "কালি",
+      "img": "/img/Ink.png",
+      "category": "Object"
+    },
+    {
+      "word": "Ice cube",
+      "bn": "বরফের টুকরা",
+      "img": "/img/Icecube.png",
+      "category": "Object"
+    },
+    {
+      "word": "Ivy gourd",
+      "bn": "কুঁদরি",
+      "img": "/img/Ivy_gourd.png",
+      "category": "Vegetable"
+    }
+  ],
+  "J": [
+    {
+      "word": "Jackfruit",
+      "bn": "কাঠাল",
+      "img": "/img/Jackfruit.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Junglefowl",
+      "bn": "বনমোরগ",
+      "img": "/img/Junglefowl.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Jar",
+      "bn": "জার",
+      "img": "/img/Jar.png",
+      "category": "Object"
+    }
+  ],
+  "K": [
+    {
+      "word": "Kite",
+      "bn": "ঘুড়ি",
+      "img": "/img/Kite.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Kangaroo",
+      "bn": "ক্যাঙ্গারু",
+      "img": "/img/Kangaroo.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Kiwi",
+      "bn": "কিউই",
+      "img": "/img/Kiwi.png",
+      "category": "Food"
+    }
+  ],
+  "L": [
+    {
+      "word": "Lion",
+      "bn": "সিংহ",
+      "img": "/img/Lion.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Lemon",
+      "bn": "লেবু",
+      "img": "/img/Lemon.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Ladyfinger",
+      "bn": "ঢেঁড়স/ভেন্ডি",
+      "img": "/img/Ladyfinger.png",
+      "category": "Vegetable"
+    }
+  ],
+  "M": [
+    {
+      "word": "Mango",
+      "bn": "আম",
+      "img": "/img/Mango.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Monkey",
+      "bn": "বানর",
+      "img": "/img/Monkey.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Marigold",
+      "bn": "গাঁদা ফুল",
+      "img": "/img/Marigold.png",
+      "category": "Flower"
+    }
+  ],
+  "N": [
+    {
+      "word": "Nest",
+      "bn": "নীড়",
+      "img": "/img/Nest.png",
+      "category": "Object"
+    },
+    {
+      "word": "Nightingale",
+      "bn": "পাপিয়া",
+      "img": "/img/Nightingale.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Neem Leaves",
+      "bn": "নীম পাতা",
+      "img": "/img/Neem_Leaves.png",
+      "category": "Tree"
+    }
+  ],
+  "O": [
+    {
+      "word": "Orange",
+      "bn": "কমলা",
+      "img": "/img/Orange.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Ox",
+      "bn": "বলদ",
+      "img": "/img/Ox.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Owl",
+      "bn": "পেঁচা",
+      "img": "/img/Owl.png",
+      "category": "Bird"
+    }
+  ],
+  "P": [
+    {
+      "word": "Papaya",
+      "bn": "পেঁপে",
+      "img": "/img/Papaya.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Peacock",
+      "bn": "ময়ূর",
+      "img": "/img/Peacock.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Pumpkin",
+      "bn": "কুমড়া",
+      "img": "/img/Pumpkin.png",
+      "category": "Vegetable"
+    }
+  ],
+  "Q": [
+    {
+      "word": "Quilt",
+      "bn": "তোশক",
+      "img": "/img/Quilt.png",
+      "category": "Object"
+    },
+    {
+      "word": "Quince",
+      "bn": "বেল",
+      "img": "/img/Quince.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Quail",
+      "bn": "কোয়েল",
+      "img": "/img/Quail.png",
+      "category": "Bird"
+    }
+  ],
+  "R": [
+    {
+      "word": "Rabbit",
+      "bn": "খরগোশ",
+      "img": "/img/Rabbit.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Radish",
+      "bn": "মুলা",
+      "img": "/img/Radish.png",
+      "category": "Vegetable"
+    },
+    {
+      "word": "Rose",
+      "bn": "গোলাপ",
+      "img": "/img/Rose.png",
+      "category": "Plant"
+    }
+  ],
+  "S": [
+    {
+      "word": "Sunflower",
+      "bn": "সূর্যমুখী",
+      "img": "/img/Sunflower.png",
+      "category": "Plant"
+    },
+    {
+      "word": "Snake",
+      "bn": "সাপ",
+      "img": "/img/Snake.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Sapodilla",
+      "bn": "সবেদা",
+      "img": "/img/Sapodilla.png",
+      "category": "Fruit"
+    }
+  ],
+  "T": [
+    {
+      "word": "Tiger",
+      "bn": "বাঘ",
+      "img": "/img/Tiger.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Tomato",
+      "bn": "টমেটো",
+      "img": "/img/Tomato.png",
+      "category": "Vegetable"
+    },
+    {
+      "word": "Turmeric",
+      "bn": "হলুদ",
+      "img": "/img/Turmeric.png",
+      "category": "Plant"
+    }
+  ],
+  "U": [
+    {
+      "word": "Umbrella",
+      "bn": "ছাতা",
+      "img": "/img/umbrella.png",
+      "category": "Object"
+    },
+    {
+      "word": "Utensils",
+      "bn": "রাঁধুনির সামগ্রী",
+      "img": "/img/Utensil.png",
+      "category": "Object"
+    },
+    {
+      "word": "Ullu (owl)",
+      "bn": "পেঁচা",
+      "img": "/img/Owl.png",
+      "category": "Bird"
+    }
+  ],
+  "V": [
+    {
+      "word": "Van",
+      "bn": "ভ্যান",
+      "img": "/img/Van.png",
+      "category": "Object"
+    },
+    {
+      "word": "Vulture",
+      "bn": "গিদ্ধ",
+      "img": "/img/Vulture.png",
+      "category": "Bird"
+    },
+    {
+      "word": "Vegetable",
+      "bn": "শাকসবজি",
+      "img": "/img/Vegetable.png",
+      "category": "Vegetable"
+    }
+  ],
+  "W": [
+    {
+      "word": "Watermelon",
+      "bn": "তরমুজ",
+      "img": "/img/Watermelon.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Wolf",
+      "bn": "নেকড়ে",
+      "img": "/img/Wolf.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Woodpecker",
+      "bn": "কাঠঠোকরা",
+      "img": "/img/Woodpecker.png",
+      "category": "Bird"
+    }
+  ],
+  "X": [
+    {
+      "word": "Xigua",
+      "bn": "তরমুজ",
+      "img": "/img/Watermelon.png",
+      "category": "Fruit"
+    },
+    {
+      "word": "Xerus (ground squirrel)",
+      "bn": "কাঠবিড়ালি",
+      "img": "/img/squirrel.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Xylophone",
+      "bn": "এক ধরনের বাদ্যযন্ত্র",
+      "img": "/img/Xylophone.png",
+      "category": "Musical Instrument"
+    }
+  ],
+  "Y": [
+    {
+      "word": "Yam",
+      "bn": "মেটে আলু",
+      "img": "/img/Yam.png",
+      "category": "Vegetable"
+    },
+    {
+      "word": "Yak",
+      "bn": "চমরী গাই",
+      "img": "/img/Yak.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Yogurt",
+      "bn": "দই",
+      "img": "/img/Yogurt.png",
+      "category": "Dairy Product"
+    }
+  ],
+  "Z": [
+    {
+      "word": "Zebra",
+      "bn": "জেবরা",
+      "img": "/img/Zebra.png",
+      "category": "Animal"
+    },
+    {
+      "word": "Zucchini",
+      "bn": "ঝুকিনি/ঝুকিনি লাউ",
+      "img": "/img/Zucchini.png",
+      "category": "Vegetable"
+    },
+    {
+      "word": "Zipper",
+      "bn": "জিপার",
+      "img": "/img/Zipper.png",
+      "category": "Object"
+    }
+  ]
+}
